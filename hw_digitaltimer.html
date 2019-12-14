@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Digital_Timer</title>
+    <style>
+        body{
+            background-image: url('image/bg.jpg');
+            background-size:cover;
+            background-attachment: fixed;
+            width: 100vw;
+            height: 100vh;
+            display:flex;
+            justify-content: flex-end;
+            align-items: center;
+            overflow: hidden;
+            font-family: '微軟正黑體';
+            
+        }
+        #container{
+            color: white;
+            margin-right: 20px ;
+        }
+        #description_1{
+            font-size: 30px;
+            text-decoration: bolder;
+            margin-left: 20px;
+            margin-bottom: 20px ;
+        }
+        #description_2{
+            font-size: 10px;
+            margin-top:20px;
+            margin-right: 25px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        #ClockDay{
+            width: 900px;
+            height: 100px;
+            margin-top:20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        #ClockTime{
+            width: 900px;
+            height: 100px;
+            margin-top:20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .Num1{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num1.png');
+        }
+        .Num2{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num2.png');
+        }
+        .Num3{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num3.png');
+        }
+        .Num4{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num4.png');
+        }
+        .Num5{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num5.png');
+        }
+        .Num6{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num6.png');
+        }
+        .Num7{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num7.png');
+        }
+        .Num8{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num8.png');
+        }
+        .Num9{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num9.png');
+        }
+        .Num0{
+            width: 100px;
+            height: 100px;
+            background-image: url('image/num0.png');
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="container">
+        <div id="description_1">
+            距離智慧型手機問世，改變人類生活至今
+        </div>
+        <div id="ClockDay">
+            <div id="d1" class="Num1"></div>
+            <div id="d2" class="Num2"></div>
+            <div id="d3" class="Num3"></div>
+            <div id="d4" class="Num4"></div>
+            <img src="image/day.png" style="width: 100px;height: 100px;">
+        </div>
+        <div id="ClockTime">
+            <div id="h1" class="Num2"></div>
+            <div id="h2" class="Num1"></div>
+            <img src="image/hour.png" style="width: 100px;height: 100px;">
+            <div id="m1" class="Num1"></div>
+            <div id="m2" class="Num0"></div>
+            <img src="image/minute.png" style="width: 100px;height: 100px;">
+            <div id="s1" class="Num5"></div>
+            <div id="s2" class="Num2"></div>
+            <img src="image/second.png" style="width: 100px;height: 100px;">
+        </div>
+        <div id="description_2">
+            ※以2007年01月09日Iphone第一代發表會當日上午10:00 開始計算 
+        </div>
+    </div>
+
+    <script>
+        function updatetime(){
+        //取得時間
+        var firstTime=new Date("2007-01-09T10:00:00");
+        var standardTime=new Date();
+        
+        //將ms轉為s
+        var first=firstTime.getTime()/1000; 
+        var now=standardTime.getTime()/1000;
+
+        //轉換時間單位並取得各位數之值
+        var diffday1=Math.floor(((now-first)/60/60/24)/10/10/10);
+        var diffday2=Math.floor(((now-first)/60/60/24)/10/10%10);
+        var diffday3=Math.floor(((now-first)/60/60/24)/10%10);
+        var diffday4=Math.floor(((now-first)/60/60/24)%10);
+
+        var diffhour1=Math.floor((((now-first)/60/60)%24)/10);
+        var diffhour2=Math.floor((((now-first)/60/60)%24)%10);
+
+        var diffminute1=Math.floor((((now-first)/60)%60)/10);
+        var diffminute2=Math.floor((((now-first)/60)%60)%10);
+
+        var diffsecond1=Math.floor((now-first)%60/10)
+        var diffsecond2=Math.floor((now-first)%60%10)
+
+        document.getElementById('d1').className=`Num${diffday1}`
+        document.getElementById('d2').className=`Num${diffday2}`
+        document.getElementById('d3').className=`Num${diffday3}`
+        document.getElementById('d4').className=`Num${diffday4}`
+        document.getElementById('h1').className=`Num${diffhour1}`
+        document.getElementById('h2').className=`Num${diffhour2}`
+        document.getElementById('m1').className=`Num${diffminute1}`
+        document.getElementById('m2').className=`Num${diffminute2}`
+        document.getElementById('s1').className=`Num${diffsecond1}`
+        document.getElementById('s2').className=`Num${diffsecond2}`
+        setInterval(updatetime,1000);
+    }
+    updatetime()
+    </script>
+</body>
+</html>
